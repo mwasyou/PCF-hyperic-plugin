@@ -181,6 +181,7 @@
 			<metric name="MetronAgent.udp.sentMessageCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentMessageCount" />
 			
 			<metric name="auctioneer.AuctioneerFetchStatesDuration" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.auctioneer.AuctioneerFetchStatesDuration" />
+			<metric name="auctioneer.AuctioneerFailedCellStateRequests" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.auctioneer.AuctioneerFailedCellStateRequests" />
 			<metric name="auctioneer.AuctioneerLRPAuctionsFailed" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.auctioneer.AuctioneerLRPAuctionsFailed" />
 			<metric name="auctioneer.AuctioneerLRPAuctionsStarted" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.auctioneer.AuctioneerLRPAuctionsStarted" />
 			<metric name="auctioneer.AuctioneerTaskAuctionsFailed" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.auctioneer.AuctioneerTaskAuctionsFailed" />
@@ -272,7 +273,8 @@
 			<metric name="ssh-proxy.memoryStats.numMallocs" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.ssh-proxy.memoryStats.numMallocs" />
 			<metric name="ssh-proxy.numCPUS" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.ssh-proxy.numCPUS" />
 			<metric name="ssh-proxy.numGoRoutines" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.ssh-proxy.numGoRoutines" />
-			
+			<metric name="ssh-proxy.ssh-connections" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.ssh-proxy.ssh-connections" />
+
 			<metric name="stager.StagingRequestFailedDuration" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.stager.StagingRequestFailedDuration" />
 			<metric name="stager.StagingRequestsFailed" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.stager.StagingRequestsFailed" />
 			<metric name="stager.StagingStartRequestsReceived" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.stager.StagingStartRequestsReceived" />
@@ -341,6 +343,7 @@
 			<metric name="bbs.CrashedActualLRPs" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.bbs.CrashedActualLRPs" />
 			<metric name="bbs.CrashingDesiredLRPs" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.bbs.CrashingDesiredLRPs" />
 			<metric name="bbs.Domain.cf-apps" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.bbs.Domain.cf-apps" />
+			<metric name="bbs.Domain.cf-tasks" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.bbs.Domain.cf-tasks" />
 			<metric name="bbs.ETCDLeader" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.bbs.ETCDLeader" />
 			<metric name="bbs.ETCDRaftTerm" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.bbs.ETCDRaftTerm" />
 			<metric name="bbs.ETCDReceivedBandwidthRate" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.bbs.ETCDReceivedBandwidthRate" />
@@ -480,7 +483,8 @@
 			<metric name="router.responses.4xx" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.responses.4xx" />
 			<metric name="router.responses.5xx" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.responses.5xx" />
 			<metric name="router.total_requests" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.total_requests" />
-			<metric name="router.total_requests" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.total_requests" />
+			<metric name="router.total_routes" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.total_routes" />
+			<metric name="router.bad_gateways" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.bad_gateways" />
         </service>
          
         <service name="loggregator_trafficcontroller">
