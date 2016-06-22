@@ -35,9 +35,31 @@
 			<metric name="MetronAgent.udp.sentByteCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentByteCount" />
 			<metric name="MetronAgent.udp.sentMessageCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentMessageCount" />
         
-        </service>        
-       
-        <service name="dea">
+        </service>
+
+		<service name="cloud_controller_worker">
+			<config>
+				<option name="service.ID" description="BOSH Job Instance ID" default="0" optional="false"/>
+				<option name="service.IP" description="BOSH Job IP Address" default="0" optional="false"/>
+				<option name="service.Job" description="Assigned Job Name" default="default" optional="false"/>
+			</config>
+			<property name="template" value="org.cloudfoundry:deployment=cf,job=%service.Job%,index=%service.ID%,ip=%service.IP%:${alias}" />
+
+			<metric name="Availability" indicator="true" />
+			<metric name="MetronAgent.DopplerForwarder.sentMessages" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.DopplerForwarder.sentMessages" />
+			<metric name="MetronAgent.MessageAggregator.counterEventReceived" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.MessageAggregator.counterEventReceived" />
+			<metric name="MetronAgent.MessageAggregator.uncategorizedEvents" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.MessageAggregator.uncategorizedEvents" />
+			<metric name="MetronAgent.dropsondeAgentListener.receivedByteCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeAgentListener.receivedByteCount" />
+			<metric name="MetronAgent.dropsondeAgentListener.receivedMessageCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeAgentListener.receivedMessageCount" />
+			<metric name="MetronAgent.dropsondeMarshaller.counterEventMarshalled" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeMarshaller.counterEventMarshalled" />
+			<metric name="MetronAgent.dropsondeMarshaller.logMessageMarshalled" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeMarshaller.logMessageMarshalled" />
+			<metric name="MetronAgent.dropsondeUnmarshaller.logMessageTotal" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeUnmarshaller.logMessageTotal" />
+			<metric name="MetronAgent.udp.sentByteCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentByteCount" />
+			<metric name="MetronAgent.udp.sentMessageCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentMessageCount" />
+
+		</service>
+
+		<service name="dea">
             <config>
                 <option name="service.ID" description="BOSH Job Instance ID" default="0" optional="false"/>
                 <option name="service.IP" description="BOSH Job IP Address" default="0" optional="false"/>
@@ -438,27 +460,27 @@
 			<metric name="MetronAgent.udp.sentByteCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentByteCount" />
 			<metric name="MetronAgent.udp.sentMessageCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentMessageCount" />
 			
-			<metric name="router.latency" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.latency" />
-			<metric name="router.latency.CloudController" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.latency.CloudController" />
-			<metric name="router.logSenderTotalMessagesRead" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.logSenderTotalMessagesRead" />
-		    <metric name="router.memoryStats.lastGCPauseTimeNS" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.memoryStats.lastGCPauseTimeNS" />
-			<metric name="router.memoryStats.numBytesAllocated" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.memoryStats.numBytesAllocated" />
-			<metric name="router.memoryStats.numBytesAllocatedHeap" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.memoryStats.numBytesAllocatedHeap" />
-			<metric name="router.memoryStats.numBytesAllocatedStack" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.memoryStats.numBytesAllocatedStack" />
-			<metric name="router.memoryStats.numFrees" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.memoryStats.numFrees" />
-			<metric name="router.memoryStats.numMallocs" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.memoryStats.numMallocs" />
-			<metric name="router.ms_since_last_registry_update" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.ms_since_last_registry_update" />
-			<metric name="router.numCPUS" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.numCPUS" />
-			<metric name="router.numGoRoutines" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.numGoRoutines" />		
-			<metric name="router.rejected_requests" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.rejected_requests" />
-			<metric name="router.requests.CloudController" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.requests.CloudController" />
-			<metric name="router.responses" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.responses" />
-			<metric name="router.responses.2xx" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.responses.2xx" />
-			<metric name="router.responses.3xx" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.responses.3xx" />
-			<metric name="router.responses.4xx" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.responses.4xx" />
-			<metric name="router.responses.5xx" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.responses.5xx" />
-			<metric name="router.total_requests" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.total_requests" />
-			<metric name="router.total_requests" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.router__%service.ID%.total_requests" />
+			<metric name="router.latency" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.latency" />
+			<metric name="router.latency.CloudController" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.latency.CloudController" />
+			<metric name="router.logSenderTotalMessagesRead" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.logSenderTotalMessagesRead" />
+		    <metric name="router.memoryStats.lastGCPauseTimeNS" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.memoryStats.lastGCPauseTimeNS" />
+			<metric name="router.memoryStats.numBytesAllocated" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.memoryStats.numBytesAllocated" />
+			<metric name="router.memoryStats.numBytesAllocatedHeap" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.memoryStats.numBytesAllocatedHeap" />
+			<metric name="router.memoryStats.numBytesAllocatedStack" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.memoryStats.numBytesAllocatedStack" />
+			<metric name="router.memoryStats.numFrees" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.memoryStats.numFrees" />
+			<metric name="router.memoryStats.numMallocs" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.memoryStats.numMallocs" />
+			<metric name="router.ms_since_last_registry_update" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.ms_since_last_registry_update" />
+			<metric name="router.numCPUS" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.numCPUS" />
+			<metric name="router.numGoRoutines" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.numGoRoutines" />		
+			<metric name="router.rejected_requests" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.rejected_requests" />
+			<metric name="router.requests.CloudController" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.requests.CloudController" />
+			<metric name="router.responses" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.responses" />
+			<metric name="router.responses.2xx" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.responses.2xx" />
+			<metric name="router.responses.3xx" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.responses.3xx" />
+			<metric name="router.responses.4xx" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.responses.4xx" />
+			<metric name="router.responses.5xx" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.responses.5xx" />
+			<metric name="router.total_requests" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.total_requests" />
+			<metric name="router.total_requests" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.gorouter.total_requests" />
         </service>
          
         <service name="loggregator_trafficcontroller">
@@ -535,10 +557,125 @@
 
             <metric name="Availability" indicator="true" />
             <metric name="CompareAndSwapSuccess" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.etcd.CompareAndSwapSuccess" />
-                
-        </service> 
-        
-        <service name="etcd_server">
+
+        </service>
+
+		<service name="nats">
+			<config>
+				<option name="service.ID" description="Service Id" default="0" optional="false"/>
+				<option name="service.IP" description="Service IP" default="0" optional="false"/>
+				<option name="service.Job" description="Assigned Job Name" default="default" optional="false"/>
+			</config>
+			<property name="template" value="org.cloudfoundry:deployment=cf,job=%service.Job%,index=%service.ID%,ip=%service.IP%:${alias}" />
+
+			<metric name="Availability" indicator="true" />
+
+			<metric name="MetronAgent.DopplerForwarder.sentMessages" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.DopplerForwarder.sentMessages" />
+			<metric name="MetronAgent.MessageAggregator.counterEventReceived" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.MessageAggregator.counterEventReceived" />
+			<metric name="MetronAgent.MessageAggregator.uncategorizedEvents" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.MessageAggregator.uncategorizedEvents" />
+			<metric name="MetronAgent.dropsondeAgentListener.receivedByteCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeAgentListener.receivedByteCount" />
+			<metric name="MetronAgent.dropsondeAgentListener.receivedMessageCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeAgentListener.receivedMessageCount" />
+			<metric name="MetronAgent.dropsondeMarshaller.counterEventMarshalled" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeMarshaller.counterEventMarshalled" />
+			<metric name="MetronAgent.dropsondeMarshaller.valueMetricMarshalled" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeMarshaller.valueMetricMarshalled" />
+			<metric name="MetronAgent.dropsondeUnmarshaller.valueMetricReceived" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeUnmarshaller.valueMetricReceived" />
+			<metric name="MetronAgent.udp.sentByteCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentByteCount" />
+			<metric name="MetronAgent.udp.sentMessageCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentMessageCount" />
+
+		</service>
+
+		<service name="nfs_server">
+			<config>
+				<option name="service.ID" description="Service Id" default="0" optional="false"/>
+				<option name="service.IP" description="Service IP" default="0" optional="false"/>
+				<option name="service.Job" description="Assigned Job Name" default="default" optional="false"/>
+			</config>
+			<property name="template" value="org.cloudfoundry:deployment=cf,job=%service.Job%,index=%service.ID%,ip=%service.IP%:${alias}" />
+
+			<metric name="Availability" indicator="true" />
+
+			<metric name="MetronAgent.DopplerForwarder.sentMessages" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.DopplerForwarder.sentMessages" />
+			<metric name="MetronAgent.MessageAggregator.counterEventReceived" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.MessageAggregator.counterEventReceived" />
+			<metric name="MetronAgent.MessageAggregator.uncategorizedEvents" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.MessageAggregator.uncategorizedEvents" />
+			<metric name="MetronAgent.dropsondeAgentListener.receivedByteCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeAgentListener.receivedByteCount" />
+			<metric name="MetronAgent.dropsondeAgentListener.receivedMessageCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeAgentListener.receivedMessageCount" />
+			<metric name="MetronAgent.dropsondeMarshaller.counterEventMarshalled" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeMarshaller.counterEventMarshalled" />
+			<metric name="MetronAgent.dropsondeMarshaller.valueMetricMarshalled" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeMarshaller.valueMetricMarshalled" />
+			<metric name="MetronAgent.dropsondeUnmarshaller.valueMetricReceived" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeUnmarshaller.valueMetricReceived" />
+			<metric name="MetronAgent.udp.sentByteCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentByteCount" />
+			<metric name="MetronAgent.udp.sentMessageCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentMessageCount" />
+
+		</service>
+
+		<service name="consul_server">
+			<config>
+				<option name="service.ID" description="Service Id" default="0" optional="false"/>
+				<option name="service.IP" description="Service IP" default="0" optional="false"/>
+				<option name="service.Job" description="Assigned Job Name" default="default" optional="false"/>
+			</config>
+			<property name="template" value="org.cloudfoundry:deployment=cf,job=%service.Job%,index=%service.ID%,ip=%service.IP%:${alias}" />
+
+			<metric name="Availability" indicator="true" />
+
+			<metric name="MetronAgent.DopplerForwarder.sentMessages" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.DopplerForwarder.sentMessages" />
+			<metric name="MetronAgent.MessageAggregator.counterEventReceived" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.MessageAggregator.counterEventReceived" />
+			<metric name="MetronAgent.MessageAggregator.uncategorizedEvents" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.MessageAggregator.uncategorizedEvents" />
+			<metric name="MetronAgent.dropsondeAgentListener.receivedByteCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeAgentListener.receivedByteCount" />
+			<metric name="MetronAgent.dropsondeAgentListener.receivedMessageCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeAgentListener.receivedMessageCount" />
+			<metric name="MetronAgent.dropsondeMarshaller.counterEventMarshalled" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeMarshaller.counterEventMarshalled" />
+			<metric name="MetronAgent.dropsondeMarshaller.valueMetricMarshalled" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeMarshaller.valueMetricMarshalled" />
+			<metric name="MetronAgent.dropsondeUnmarshaller.valueMetricReceived" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeUnmarshaller.valueMetricReceived" />
+			<metric name="MetronAgent.udp.sentByteCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentByteCount" />
+			<metric name="MetronAgent.udp.sentMessageCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentMessageCount" />
+
+		</service>
+
+		<service name="clock_global">
+			<config>
+				<option name="service.ID" description="Service Id" default="0" optional="false"/>
+				<option name="service.IP" description="Service IP" default="0" optional="false"/>
+				<option name="service.Job" description="Assigned Job Name" default="default" optional="false"/>
+			</config>
+			<property name="template" value="org.cloudfoundry:deployment=cf,job=%service.Job%,index=%service.ID%,ip=%service.IP%:${alias}" />
+
+			<metric name="Availability" indicator="true" />
+
+			<metric name="MetronAgent.DopplerForwarder.sentMessages" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.DopplerForwarder.sentMessages" />
+			<metric name="MetronAgent.MessageAggregator.counterEventReceived" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.MessageAggregator.counterEventReceived" />
+			<metric name="MetronAgent.MessageAggregator.uncategorizedEvents" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.MessageAggregator.uncategorizedEvents" />
+			<metric name="MetronAgent.dropsondeAgentListener.receivedByteCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeAgentListener.receivedByteCount" />
+			<metric name="MetronAgent.dropsondeAgentListener.receivedMessageCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeAgentListener.receivedMessageCount" />
+			<metric name="MetronAgent.dropsondeMarshaller.counterEventMarshalled" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeMarshaller.counterEventMarshalled" />
+			<metric name="MetronAgent.dropsondeMarshaller.valueMetricMarshalled" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeMarshaller.valueMetricMarshalled" />
+			<metric name="MetronAgent.dropsondeUnmarshaller.valueMetricReceived" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeUnmarshaller.valueMetricReceived" />
+			<metric name="MetronAgent.udp.sentByteCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentByteCount" />
+			<metric name="MetronAgent.udp.sentMessageCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentMessageCount" />
+
+		</service>
+
+		<service name="ha_proxy">
+			<config>
+				<option name="service.ID" description="Service Id" default="0" optional="false"/>
+				<option name="service.IP" description="Service IP" default="0" optional="false"/>
+				<option name="service.Job" description="Assigned Job Name" default="default" optional="false"/>
+			</config>
+			<property name="template" value="org.cloudfoundry:deployment=cf,job=%service.Job%,index=%service.ID%,ip=%service.IP%:${alias}" />
+
+			<metric name="Availability" indicator="true" />
+
+			<metric name="MetronAgent.DopplerForwarder.sentMessages" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.DopplerForwarder.sentMessages" />
+			<metric name="MetronAgent.MessageAggregator.counterEventReceived" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.MessageAggregator.counterEventReceived" />
+			<metric name="MetronAgent.MessageAggregator.uncategorizedEvents" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.MessageAggregator.uncategorizedEvents" />
+			<metric name="MetronAgent.dropsondeAgentListener.receivedByteCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeAgentListener.receivedByteCount" />
+			<metric name="MetronAgent.dropsondeAgentListener.receivedMessageCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeAgentListener.receivedMessageCount" />
+			<metric name="MetronAgent.dropsondeMarshaller.counterEventMarshalled" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeMarshaller.counterEventMarshalled" />
+			<metric name="MetronAgent.dropsondeMarshaller.valueMetricMarshalled" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeMarshaller.valueMetricMarshalled" />
+			<metric name="MetronAgent.dropsondeUnmarshaller.valueMetricReceived" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeUnmarshaller.valueMetricReceived" />
+			<metric name="MetronAgent.udp.sentByteCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentByteCount" />
+			<metric name="MetronAgent.udp.sentMessageCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentMessageCount" />
+
+		</service>
+
+		<service name="etcd_server">
              <config>
                 <option name="service.ID" description="Service Id" default="0" optional="false"/>
                 <option name="service.IP" description="Service IP" default="0" optional="false"/>
