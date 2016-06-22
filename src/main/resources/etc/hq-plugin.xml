@@ -2,7 +2,7 @@
 <plugin name="PCF">
     <property name="PLUGIN_VERSION" value="1.6.0-20160201-JFO14"/>
 
-    <server name="Pivotal CloudFoundry 1.6.x">   		
+    <server name="Pivotal CloudFoundry 1.7.x">
         <plugin type="autoinventory" class="com.pivotal.cloudfoundry.monitoring.hyperic.Discovery"/>
         <plugin type="measurement" class="com.pivotal.cloudfoundry.monitoring.hyperic.Measurement"/>
 
@@ -151,8 +151,57 @@
 			<metric name="rep.numGoRoutines" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.rep.numGoRoutines" />
             
         </service>
-        
-        <service name="diego_brain">
+
+		<service name="diego_cell_windows">
+			<config>
+				<option name="service.ID" description="BOSH Job Instance ID" default="0" optional="false"/>
+				<option name="service.IP" description="BOSH Job IP Address" default="0" optional="false"/>
+				<option name="service.Job" description="Assigned Job Name" default="default" optional="false"/>
+			</config>
+			<property name="template" value="org.cloudfoundry:deployment=cf,job=%service.Job%,index=%service.ID%,ip=%service.IP%:${alias}" />
+
+			<metric name="Availability" indicator="true" />
+
+			<metric name="MetronAgent.DopplerForwarder.sentMessages" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.DopplerForwarder.sentMessages" />
+			<metric name="MetronAgent.MessageAggregator.counterEventReceived" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.MessageAggregator.counterEventReceived" />
+			<metric name="MetronAgent.MessageAggregator.uncategorizedEvents" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.MessageAggregator.uncategorizedEvents" />
+			<metric name="MetronAgent.dropsondeAgentListener.receivedByteCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeAgentListener.receivedByteCount" />
+			<metric name="MetronAgent.dropsondeAgentListener.receivedMessageCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeAgentListener.receivedMessageCount" />
+			<metric name="MetronAgent.dropsondeMarshaller.containerMetricMarshalled" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeMarshaller.containerMetricMarshalled" />
+			<metric name="MetronAgent.dropsondeMarshaller.counterEventMarshalled" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeMarshaller.counterEventMarshalled" />
+			<metric name="MetronAgent.dropsondeMarshaller.logMessageMarshalled" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeMarshaller.logMessageMarshalled" />
+			<metric name="MetronAgent.dropsondeMarshaller.valueMetricMarshalled" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeMarshaller.valueMetricMarshalled" />
+			<metric name="MetronAgent.dropsondeUnmarshaller.containerMetricReceived" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeUnmarshaller.containerMetricReceived" />
+			<metric name="MetronAgent.dropsondeUnmarshaller.logMessageTotal" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeUnmarshaller.logMessageTotal" />
+			<metric name="MetronAgent.dropsondeUnmarshaller.valueMetricReceived" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.dropsondeUnmarshaller.valueMetricReceived" />
+			<metric name="MetronAgent.udp.sentByteCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentByteCount" />
+			<metric name="MetronAgent.udp.sentMessageCount" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.MetronAgent.udp.sentMessageCount" />
+
+			<metric name="garden-windows.logSenderTotalMessagesRead" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.garden-windows.logSenderTotalMessagesRead" />
+			<metric name="garden-windows.memoryStats.lastGCPauseTimeNS" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.garden-windows.memoryStats.lastGCPauseTimeNS" />
+			<metric name="garden-windows.memoryStats.numBytesAllocated" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.garden-windows.memoryStats.numBytesAllocated" />
+			<metric name="garden-windows.memoryStats.numBytesAllocatedHeap" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.garden-windows.memoryStats.numBytesAllocatedHeap" />
+			<metric name="garden-windows.memoryStats.numBytesAllocatedStack" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.garden-windows.memoryStats.numBytesAllocatedStack" />
+			<metric name="garden-windows.memoryStats.numFrees" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.garden-windows.memoryStats.numFrees" />
+			<metric name="garden-windows.memoryStats.numMallocs" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.garden-windows.memoryStats.numMallocs" />
+			<metric name="garden-windows.numCPUS" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.garden-windows.numCPUS" />
+			<metric name="garden-windows.numGoRoutines" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.garden-windows.numGoRoutines" />
+
+			<metric name="rep.UnhealthyCell" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.rep.UnhealthyCell" />
+			<metric name="rep.StalledGardenDuration" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.rep.StalledGardenDuration" />
+			<metric name="rep.logSenderTotalMessagesRead" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.rep.logSenderTotalMessagesRead" />
+			<metric name="rep.memoryStats.lastGCPauseTimeNS" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.rep.memoryStats.lastGCPauseTimeNS" />
+			<metric name="rep.memoryStats.numBytesAllocated" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.rep.memoryStats.numBytesAllocated" />
+			<metric name="rep.memoryStats.numBytesAllocatedHeap" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.rep.memoryStats.numBytesAllocatedHeap" />
+			<metric name="rep.memoryStats.numBytesAllocatedStack" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.rep.memoryStats.numBytesAllocatedStack" />
+			<metric name="rep.memoryStats.numFrees" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.rep.memoryStats.numFrees" />
+			<metric name="rep.memoryStats.numMallocs" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.rep.memoryStats.numMallocs" />
+			<metric name="rep.numCPUS" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.rep.numCPUS" />
+			<metric name="rep.numGoRoutines" indicator="true" category="THROUGHPUT" alias="opentsdb.nozzle.rep.numGoRoutines" />
+
+		</service>
+
+		<service name="diego_brain">
             <config>
                 <option name="service.ID" description="BOSH Job Instance ID" default="0" optional="false"/>
                 <option name="service.IP" description="BOSH Job IP Address" default="0" optional="false"/>
